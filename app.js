@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { Usuario } = require('./models/usuario');
+const { Opt } = require('./models/opt');
+const { OptLogs } = require('./models/optLogs');
 const cors = require('cors');
 
 

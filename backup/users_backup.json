@@ -1,24 +1,14 @@
 [
   {
     "id": "Rno7Z7nsSPDBN0Zrnr2E",
-    "nome": "Júlia Gayotto",
-    "email": "juhgayotto@gmail.com",
-    "telefone": "11 111111111",
-    "endereco": {
-      "cidade": "São José dos Campos",
-      "estado": "SP",
-      "complemento": "",
-      "numero": "20",
-      "logradouro": "Rua Polar",
-      "bairro": "Centro",
-      "cep": "11202142"
-    },
-    "dataNascimento": "2024-06-18"
+    "telefone": "Anonimizado",
+    "endereco": "Anonimizado",
+    "nome": "Anonimizado",
+    "dataNascimento": "Anonimizado",
+    "email": "Anonimizado@anonimizado.com"
   },
   {
     "id": "g1yaZhTMIksn3dvWWLGB",
-    "nome": "Amanda",
-    "email": "amanda@gmail.com",
     "telefone": "11 111111111",
     "endereco": {
       "cidade": "São Paulo",
@@ -29,12 +19,12 @@
       "bairro": "Centro",
       "cep": "12345678"
     },
-    "dataNascimento": "2024-06-13"
+    "nome": "Amanda",
+    "dataNascimento": "2024-06-13",
+    "email": "amanda@gmail.com"
   },
   {
     "id": "ryuDabg6ENPBulOvFOMV",
-    "nome": "Carlos Eduardo",
-    "email": "carlos@gmail.com",
     "telefone": "11 111111111",
     "endereco": {
       "cidade": "São Jose dos Campos",
@@ -45,6 +35,8 @@
       "bairro": "Centro",
       "cep": "12345678"
     },
-    "dataNascimento": "2024-06-17"
+    "nome": "Carlos Eduardo",
+    "dataNascimento": "2024-06-17",
+    "email": "carlos@gmail.com"
   }
 ]
