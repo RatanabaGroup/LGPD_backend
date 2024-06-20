@@ -14,23 +14,37 @@ async function monitorAndAnonymize() {
   for (const userId of userIds) {
     const userRef = db.collection('users').doc(userId);
 
-    // Verifique se o documento existe
     const userDoc = await userRef.get();
     if (!userDoc.exists) {
       console.log(`No document found for user ${userId}`);
-      continue; // Pula para o próximo usuário na lista
+      continue; 
     }
 
-    // Anonimizar dados no backup restaurado
     await userRef.update({
       nome: 'Anonimizado',
-      email: `anonimizado${userId}@example.com`,
+      email: 'Anonimizado@anonimizado.com',
+      dataNascimento: 'Anonimizado',
+      endereco: 'Anonimizado',
+      telefone: 'Anonimizado'
     });
 
-    // await batch.commit();
-    console.log(`Backup data for user ${userId} anonymized`);
+    const user = await db.collection('users').doc(userId).get();
+
+    try {
+      const userRecord = await admin.auth().getUserByEmail(user.data().email);
+      const uid = userRecord.uid;
+
+      await admin.auth().deleteUser(uid);
+
+      console.log(`Backup data for user ${userId} anonymized`);
+    } catch (error) {
+      if (error.code === 'auth/user-not-found') {
+        console.log(`No Firebase Auth user record found for user ${userId}`);
+      } else {
+        console.error(`Error fetching or deleting user ${userId}:`, error);
+      }
+    }
   }
 }
 
-// Execute a função de monitoramento periodicamente
-setInterval(monitorAndAnonymize, 60000); // Verifica a cada minuto
+setInterval(monitorAndAnonymize, 5000);

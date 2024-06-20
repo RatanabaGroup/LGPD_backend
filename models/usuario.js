@@ -127,9 +127,22 @@ class Usuario {
     }
   }
 
-  async deleteUserAndAnonymizeData(userId) {
+  async deleteUserAndAnonymizeData(email) {
+    console.log(email);    
     
     const db = admin.firestore();
+
+    const snapshot = await db.collection('users').where('email', '==', email).get();
+
+    if (snapshot.empty) {
+      return null;
+    }
+
+    let userId;
+    snapshot.forEach(doc => {
+      userId = doc.id;
+    });
+    console.log(userId);
 
     try {
       // Adicionar o usuário à lista de exclusão
@@ -138,10 +151,19 @@ class Usuario {
       const userRef = db.collection('users').doc(userId);
 
       // Excluir ou anonimizar dados na coleção 'users'
+
       await userRef.update({
         nome: 'Anonimizado',
-        email: `anonimizado${userId}@example.com`
+        email: 'Anonimizado',
+        dataNascimento: 'Anonimizado',
+        endereco: 'Anonimizado',
+        telefone: 'Anonimizado'
       });
+  
+      const userRecord = await admin.auth().getUserByEmail(email);
+      const uid = userRecord.uid;
+  
+      await admin.auth().deleteUser(uid);
 
       console.log(`Data for user ${userId} anonymized`);
     } catch (error) {
