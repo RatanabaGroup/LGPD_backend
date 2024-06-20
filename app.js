@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 // Usuario
 app.post('/usuario/cadastro', async (req, res) => {
   var usuario = new Usuario();
+  const db = admin.firestore();
 
   if (req.body) {
     let data = req.body
